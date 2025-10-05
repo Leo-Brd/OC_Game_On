@@ -1,5 +1,5 @@
-# Projet GameOn
-1. Forkez ce repo ;
-2. Il est conseillé d'utiliser VisualStudio Code et vous pouvez utiliser Docker, mais ce n'est pas obligatoire ;
-3. Il n'y a aucune dépendance ;
-4. Vous ne devez utiliser que du CSS personnalisé et du JavaScript pur, sans jQuery, Bootstrap ou autre librairie.
+<img width="250" height="45" alt="Logo" src="https://github.com/user-attachments/assets/41de1801-1050-472b-b9fb-7ae36e820613" />
+
+
+OpenClassrooms React Developer formation : project 3
+
