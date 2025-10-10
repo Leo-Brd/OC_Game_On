@@ -8,13 +8,13 @@
   margin: 0;
   padding: 0;
 }
-/* Landing Page */
+
+/***** Landing Page *****/
 
 body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  background-image: url("background.png");
   font-family: var(--font-default);
   font-size: 18px;
   margin: 0 auto;
@@ -26,7 +26,6 @@ p {
 }
 
 img {
-  padding-right: 1rem;
   object-fit: cover;
 }
 
@@ -68,31 +67,8 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
 
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-}
-
-
-
- @media screen and (max-width: 540px) {
+@media screen and (max-width: 540px) {
   .topnav a {display: none;}
   .topnav a.icon {
     float: right;
@@ -413,7 +389,7 @@ input[data-error]::after {
   margin-bottom: 10px;
 }
 .hero-content {
-  padding: 51px 67px;
+  padding: 51px 50px;
   grid-column: span 4;
   background: #232323;
   color: #fff;
@@ -449,8 +425,8 @@ input[data-error]::after {
 .btn-signup {
   outline: none;
   text-transform: capitalize;
-  font-size: 1.3rem;
-  padding: 15px 23px;
+  font-size: 25px;
+  padding: 15px 40px;
   margin: 0;
   margin-top: 59px;
 }
@@ -478,6 +454,10 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+
+/***** MEDIA QUERIES *****/
+
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -517,6 +497,57 @@ footer {
   }
 }
 
+
+@media screen and (max-width: 768px) {
+
+  main {
+    margin: 1px 20px 20px;
+  }
+
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+  }
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+  }
+
+  .header-logo {
+    width: 103px;
+    height: 19px;
+    margin-right: 0;
+  }
+
+  .hero-headline {
+    font-size: 40px;
+    font-weight: 500;
+  }
+
+  .hero-text {
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+
+/***** ANIMATIONS *****/
+
 @keyframes modalopen {
   from {
     opacity: 0;
@@ -526,4 +557,3 @@ footer {
     opacity: 1;
   }
 }
-
