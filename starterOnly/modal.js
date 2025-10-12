@@ -83,6 +83,16 @@ function validateFormData(form) {
     isValid = false;
   }
 
+  // Birthdate
+  const birthInput = form.querySelector('input[name="birthdate"]');
+  const birthValue = birthInput.value.trim();
+  setFieldError(birthInput, null);
+  if (birthValue === '') {
+    setFieldError(birthInput, 'Veuillez renseigner votre date de naissance.');
+    if (isValid) birthInput.focus();
+    isValid = false;
+  }
+
   // Competition number
   const quantityInput = form.querySelector('input[name="quantity"]');
   const quantityValue = quantityInput.value.trim();
@@ -106,7 +116,7 @@ function validateFormData(form) {
     isValid = false;
   }
 
-  // Using conditions (obligatory checkbox)
+  // Using conditions (mandatory checkbox)
   const cguInput = form.querySelector('input#checkbox1');
   setFieldError(cguInput, null);
   if (!cguInput.checked) {
@@ -118,7 +128,8 @@ function validateFormData(form) {
   return isValid;
 }
 
-// Gestionnaire de soumission du formulaire
+
+// Form submission handler
 document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('form[name="reserve"]');
   if (form) {
