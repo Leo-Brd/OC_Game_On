@@ -27,8 +27,13 @@ function openModal() {
 // CLOSE MODAL
 function closeModal() {
   modalbg.style.display = "none";
+  const form = document.querySelector('form[name="reserve"]');
+  if (form) {
+    form.reset();
+    const inputs = form.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => setFieldError(input, null));
+  }
 }
-
 
 
 /***** FORM VALIDATION *****/
@@ -56,7 +61,7 @@ function validateFormData(form) {
   const firstValue = firstInput.value.trim();
   setFieldError(firstInput, null);
   if (firstValue.length < 2) {
-    setFieldError(firstInput, 'Le prénom doit contenir au moins 2 caractères.');
+    setFieldError(firstInput, 'Veuillez entrer 2 caractères ou plus pour le champ du prénom.');
     firstInput.focus();
     isValid = false;
   }
@@ -66,7 +71,7 @@ function validateFormData(form) {
   const lastValue = lastInput.value.trim();
   setFieldError(lastInput, null);
   if (lastValue.length < 2) {
-    setFieldError(lastInput, 'Le nom doit contenir au moins 2 caractères.');
+    setFieldError(lastInput, 'Veuillez entrer 2 caractères ou plus pour le champ du nom.');
     if (isValid) lastInput.focus();
     isValid = false;
   }
@@ -88,7 +93,7 @@ function validateFormData(form) {
   const birthValue = birthInput.value.trim();
   setFieldError(birthInput, null);
   if (birthValue === '') {
-    setFieldError(birthInput, 'Veuillez renseigner votre date de naissance.');
+    setFieldError(birthInput, 'Vous devez entrer votre date de naissance.');
     if (isValid) birthInput.focus();
     isValid = false;
   }
@@ -111,7 +116,7 @@ function validateFormData(form) {
     setFieldError(input, null); // reset all
   });
   if (!locationChecked) {
-    setFieldError(locationInputs[0], 'Veuillez sélectionner un lieu.');
+    setFieldError(locationInputs[0], 'Vous devez choisir une option.');
     if (isValid) locationInputs[0].focus();
     isValid = false;
   }
@@ -120,7 +125,7 @@ function validateFormData(form) {
   const cguInput = form.querySelector('input#checkbox1');
   setFieldError(cguInput, null);
   if (!cguInput.checked) {
-    setFieldError(cguInput, 'Vous devez accepter les conditions d\'utilisation.');
+    setFieldError(cguInput, 'Vous devez vérifier que vous acceptez les termes et conditions.');
     if (isValid) cguInput.focus();
     isValid = false;
   }
