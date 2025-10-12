@@ -71,6 +71,18 @@ function validateFormData(form) {
     isValid = false;
   }
 
+  // Email
+  const emailInput = form.querySelector('input[name="email"]');
+  const emailValue = emailInput.value.trim();
+  setFieldError(emailInput, null);
+  // REGEX for basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailValue)) {
+    setFieldError(emailInput, 'Veuillez entrer une adresse email valide.');
+    if (isValid) emailInput.focus();
+    isValid = false;
+  }
+
   return isValid;
 }
 
