@@ -93,6 +93,19 @@ function validateFormData(form) {
     isValid = false;
   }
 
+  // Location (radio buttons)
+  const locationInputs = form.querySelectorAll('input[name="location"]');
+  let locationChecked = false;
+  locationInputs.forEach(input => {
+    if (input.checked) locationChecked = true;
+    setFieldError(input, null); // reset all
+  });
+  if (!locationChecked) {
+    setFieldError(locationInputs[0], 'Veuillez sélectionner un lieu.');
+    if (isValid) locationInputs[0].focus();
+    isValid = false;
+  }
+
   return isValid;
 }
 
