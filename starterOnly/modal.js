@@ -30,30 +30,48 @@ function closeModal() {
 }
 
 
-// FORM VALIDATION 
 
+/***** FORM VALIDATION *****/
 
-// Fonction de validation des données du formulaire
+// We use this function to show or reset an error message on a field
+function setFieldError(input, message) {
+  const formDataDiv = input.closest('.formData');
+  if (message) {
+    formDataDiv.setAttribute('data-error', message);
+    formDataDiv.setAttribute('data-error-visible', 'true');
+    input.setAttribute('data-error', message);
+  } else {
+    formDataDiv.removeAttribute('data-error');
+    formDataDiv.removeAttribute('data-error-visible');
+    input.removeAttribute('data-error');
+  }
+}
+
+// FUNCTION TO VALIDATE FORM DATA
 function validateFormData(form) {
-  // Récupérer la valeur du prénom
+  let isValid = true;
+
+  // First Name
   const firstInput = form.querySelector('input[name="first"]');
   const firstValue = firstInput.value.trim();
-  const firstFormData = firstInput.closest('.formData');
-  // Réinitialiser l'état d'erreur
-  firstFormData.removeAttribute('data-error');
-  firstFormData.removeAttribute('data-error-visible');
-  firstInput.removeAttribute('data-error');
-
-  // Vérification du prénom
+  setFieldError(firstInput, null);
   if (firstValue.length < 2) {
-    const errorMsg = 'Le prénom doit contenir au moins 2 caractères.';
-    firstFormData.setAttribute('data-error', errorMsg);
-    firstFormData.setAttribute('data-error-visible', 'true');
-    firstInput.setAttribute('data-error', errorMsg);
+    setFieldError(firstInput, 'Le prénom doit contenir au moins 2 caractères.');
     firstInput.focus();
-    return false;
+    isValid = false;
   }
-  return true;
+
+  // Last Name
+  const lastInput = form.querySelector('input[name="last"]');
+  const lastValue = lastInput.value.trim();
+  setFieldError(lastInput, null);
+  if (lastValue.length < 2) {
+    setFieldError(lastInput, 'Le nom doit contenir au moins 2 caractères.');
+    if (isValid) lastInput.focus();
+    isValid = false;
+  }
+
+  return isValid;
 }
 
 // Gestionnaire de soumission du formulaire
