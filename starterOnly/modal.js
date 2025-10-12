@@ -106,6 +106,15 @@ function validateFormData(form) {
     isValid = false;
   }
 
+  // Using conditions (obligatory checkbox)
+  const cguInput = form.querySelector('input#checkbox1');
+  setFieldError(cguInput, null);
+  if (!cguInput.checked) {
+    setFieldError(cguInput, 'Vous devez accepter les conditions d\'utilisation.');
+    if (isValid) cguInput.focus();
+    isValid = false;
+  }
+
   return isValid;
 }
 
