@@ -83,6 +83,16 @@ function validateFormData(form) {
     isValid = false;
   }
 
+  // Competition number
+  const quantityInput = form.querySelector('input[name="quantity"]');
+  const quantityValue = quantityInput.value.trim();
+  setFieldError(quantityInput, null);
+  if (quantityValue === '' || isNaN(quantityValue) || !Number.isInteger(Number(quantityValue))) {
+    setFieldError(quantityInput, 'Veuillez saisir un nombre entier de concours.');
+    if (isValid) quantityInput.focus();
+    isValid = false;
+  }
+
   return isValid;
 }
 
