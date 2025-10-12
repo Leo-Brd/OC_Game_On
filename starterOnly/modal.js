@@ -1,3 +1,4 @@
+
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -29,3 +30,13 @@ function closeModal() {
 }
 
 
+// FORM VALIDATION 
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.querySelector('form[name="reserve"]');
+  if (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      alert('Formulaire soumis !');
+    });
+  }
+});
