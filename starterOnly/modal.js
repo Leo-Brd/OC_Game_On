@@ -28,6 +28,18 @@ function openModal() {
 function closeModal() {
   modalbg.style.display = "none";
   const form = document.querySelector('form[name="reserve"]');
+  const modalBody = document.querySelector('.modal-body');
+  // Clear confirmation message and reset form
+  if (modalBody) {
+    const conf = modalBody.querySelector('.form-confirmation');
+    if (conf) {
+      conf.style.display = 'none';
+    }
+    if (form) {
+      form.style.display = '';
+    }
+    modalBody.style.minHeight = '';
+  }
   if (form) {
     form.reset();
     const inputs = form.querySelectorAll('input, select, textarea');
@@ -139,19 +151,18 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('form[name="reserve"]');
   if (form) {
     form.addEventListener('submit', function (e) {
-      // Empêcher la soumission par défaut pour éviter la navigation
+      // Avoid default submission to prevent navigation
       e.preventDefault();
       if (!validateFormData(form)) {
         return;
       }
-      // Afficher confirmation dans la modal sans fermer la page
+      // Show confirmation in the modal without closing the page
       showConfirmation(form);
     });
   }
 });
 
-// Affiche un message de confirmation au centre de la modal,
-// vide le formulaire et transforme le bouton submit en bouton 'Fermer'.
+// Show a confirmation message in the center of the modal
 function showConfirmation(form) {
   // Lock modal-body height so modal doesn't shrink when we hide the form
   const modalBody = document.querySelector('.modal-body');
@@ -161,7 +172,7 @@ function showConfirmation(form) {
   // Clear form fields
   try { form.reset(); } catch (err) { /* ignore */ }
 
-  // Hide the form entirely (simpler and less error-prone)
+  // Hide the form entirely
   form.style.display = 'none';
   form.height = modalBody.style.height;
 
