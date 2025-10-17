@@ -21,7 +21,7 @@ closeModalBtn.forEach((btn) => btn.addEventListener("click", closeModal));
 
 // OPEN MODAL
 function openModal() {
-  modalbg.style.display = "block";
+  modalbg.style.display = "flex";
 }
 
 // CLOSE MODAL
