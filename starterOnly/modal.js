@@ -139,11 +139,61 @@ document.addEventListener('DOMContentLoaded', function () {
   const form = document.querySelector('form[name="reserve"]');
   if (form) {
     form.addEventListener('submit', function (e) {
+      // Empêcher la soumission par défaut pour éviter la navigation
+      e.preventDefault();
       if (!validateFormData(form)) {
-        e.preventDefault();
         return;
       }
-      alert('Formulaire soumis !');
+      // Afficher confirmation dans la modal sans fermer la page
+      showConfirmation(form);
     });
   }
 });
+
+// Affiche un message de confirmation au centre de la modal,
+// vide le formulaire et transforme le bouton submit en bouton 'Fermer'.
+function showConfirmation(form) {
+  // Lock modal-body height so modal doesn't shrink when we hide the form
+  const modalBody = document.querySelector('.modal-body');
+  const bodyRect = modalBody.getBoundingClientRect();
+  modalBody.style.minHeight = `${bodyRect.height}px`;
+
+  // Clear form fields
+  try { form.reset(); } catch (err) { /* ignore */ }
+
+  // Hide the form entirely (simpler and less error-prone)
+  form.style.display = 'none';
+  form.height = modalBody.style.height;
+
+  // Create or reuse confirmation container inside modal-body
+  let conf = modalBody.querySelector('.form-confirmation');
+  if (!conf) {
+    conf = document.createElement('div');
+    conf.className = 'form-confirmation';
+    modalBody.appendChild(conf);
+  }
+
+  // Build confirmation content (message + button)
+  conf.innerHTML = '';
+  const msg = document.createElement('div');
+  msg.className = 'form-confirmation-message';
+  msg.textContent = "Merci pour votre inscription";
+  conf.appendChild(msg);
+
+  const closeBtn = document.createElement('button');
+  closeBtn.type = 'button';
+  closeBtn.className = 'button form-confirmation-close';
+  closeBtn.textContent = 'Fermer';
+  conf.appendChild(closeBtn);
+
+  conf.style.display = 'flex';
+
+  // Close handler: hide confirmation, show form and close modal
+  closeBtn.addEventListener('click', function () {
+    conf.style.display = 'none';
+    form.style.display = '';
+    // Clear the locked minHeight and then close
+    modalBody.style.minHeight = '';
+    closeModal();
+  });
+}

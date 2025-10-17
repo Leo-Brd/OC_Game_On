@@ -1,3 +1,5 @@
+
+
 :root {
   --font-default: "DM Sans", Arial, Helvetica, sans-serif;
   --font-slab: var(--font-default);
@@ -161,6 +163,8 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+  position: relative;
+  min-height: 420px;
 }
 
 label {
@@ -200,6 +204,42 @@ input {
 }
 .formData[data-error-visible="true"] .text-control {
   border: 2px solid #e54858;
+}
+
+/* Confirmation message shown after successful submit */
+.form-confirmation {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  z-index: 2;
+  color: #fff;
+  font-size: 36px;
+  padding: 12px 110px;
+}
+.form-confirmation-message {
+  text-align: center;
+  font-size: 36px;
+  font-weight: 400;
+  color: #fff;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.form-confirmation .form-confirmation-close {
+  margin-bottom: 32px;
+  background: #fe142f;
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  border: 0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .checkbox-label,
@@ -275,6 +315,7 @@ input {
   opacity: 1;
   cursor: pointer;
   transform: scale(0.7);
+  z-index: 100;
 }
 .close:before,
 .close:after {
