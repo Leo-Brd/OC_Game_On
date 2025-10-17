@@ -3,3 +3,7 @@
 
 OpenClassrooms React Developer formation : project 4
 
+- It's a landing page to register to a gaming event
+- You can fill the form and submit to see the confirmation modal
+- When a field is wrong, you can see the error
+- The website is responsive for mobile and tablet
