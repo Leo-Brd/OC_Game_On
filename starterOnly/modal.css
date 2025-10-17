@@ -494,7 +494,74 @@ footer {
 
 /***** MEDIA QUERIES *****/
 
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 768px) {
+  main {
+    margin: 1px 20px 20px;
+  }
+
+  .topnav.responsive {
+    position: relative;
+    padding-left: 0;    
+  }
+  .menu-burger-links {animation: burgerMenuOpen 0.4s cubic-bezier(0.4,0,0.2,1);}
+
+  .menu-burger-links a {
+    opacity: 0;
+    transform: translateY(-20px);
+    animation: burgerLinkIn 0.4s forwards;
+  }
+  .topnav.responsive a:nth-child(2) { animation-delay: 0.08s; }
+  .topnav.responsive a:nth-child(3) { animation-delay: 0.16s; }
+  .topnav.responsive a:nth-child(4) { animation-delay: 0.24s; }
+  .topnav.responsive a:nth-child(5) { animation-delay: 0.32s; }
+  
+  .topnav.responsive a.icon {
+    opacity: 1 !important;
+    transform: none !important;
+    animation: none !important;
+  }
+
+  .topnav a {display: none;}
+  .topnav a.icon {
+    color: red;
+    margin-top: 0;
+  }
+  .topnav a.icon:hover {
+    background-color: transparent;
+    color: red;
+  }
+
+  .topnav.responsive .icon {
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .topnav.responsive img {
+    display: none;
+    width: 0;
+  }
+  .topnav.responsive .main-navbar {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 35px;
+  }
+  .header-logo {
+    width: 103px;
+    height: 19px;
+    margin-right: 0;
+  }
+
   .hero-section {
     display: block;
     box-shadow: unset;
@@ -511,12 +578,14 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 40px;
+    font-weight: 500;
     white-space: normal;
   }
   .hero-text {
     width: unset;
-    font-size: 1.5rem;
+    font-size: 13px;
+    font-weight: 400;
   }
   .hero-img img {
     border-radius: 10px;
@@ -534,54 +603,6 @@ footer {
 }
 
 
-@media screen and (max-width: 768px) {
-
-  main {
-    margin: 1px 20px 20px;
-  }
-
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
-  .topnav {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 35px;
-  }
-
-  .header-logo {
-    width: 103px;
-    height: 19px;
-    margin-right: 0;
-  }
-
-  .hero-headline {
-    font-size: 40px;
-    font-weight: 500;
-  }
-
-  .hero-text {
-    font-size: 13px;
-    font-weight: 400;
-  }
-}
-
-
 /***** ANIMATIONS *****/
 
 @keyframes modalopen {
@@ -591,5 +612,27 @@ footer {
   }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes burgerMenuOpen {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes burgerLinkIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
