@@ -1,4 +1,3 @@
-
 function editNav() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
@@ -114,8 +113,15 @@ function validateFormData(form) {
   const quantityInput = form.querySelector('input[name="quantity"]');
   const quantityValue = quantityInput.value.trim();
   setFieldError(quantityInput, null);
-  if (quantityValue === '' || isNaN(quantityValue) || !Number.isInteger(Number(quantityValue))) {
-    setFieldError(quantityInput, 'Veuillez saisir un nombre entier de concours.');
+  const numValue = Number(quantityValue);
+  if (
+    quantityValue === '' ||
+    isNaN(numValue) ||
+    !Number.isInteger(numValue) ||
+    numValue < 0 ||
+    numValue > 100
+  ) {
+    setFieldError(quantityInput, 'Veuillez saisir un nombre entier entre 0 et 100.');
     if (isValid) quantityInput.focus();
     isValid = false;
   }
